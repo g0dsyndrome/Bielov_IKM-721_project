@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielov_IKM-721_project", "Bielov_IKM-721_project\Bielov_IKM-721_project.csproj", "{B2176EBA-96DA-444A-BFC0-63452D47B4A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2176EBA-96DA-444A-BFC0-63452D47B4A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2176EBA-96DA-444A-BFC0-63452D47B4A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2176EBA-96DA-444A-BFC0-63452D47B4A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2176EBA-96DA-444A-BFC0-63452D47B4A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2081B543-A5B0-4D44-B49E-B9AC0E9E8724}
+	EndGlobalSection
+EndGlobal
