@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace Surname_Group_Course_project
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
+namespace Bielov_IKM_721_project
 {
     class MajorWork
     {
@@ -12,11 +15,13 @@ namespace Surname_Group_Course_project
         private System.DateTime TimeBegin; // час початку роботи програми
         private string Data; //вхідні дані
         private string Result; // Поле результату
+        public bool Modify;
+        private int Key;// поле ключа
         private string SaveFileName;// ім’я файлу для запису
         private string OpenFileName;// ім’я файлу для читання
         public void WriteSaveFileName(string S)// метод запису даних в об'єкт
         {
-            this.SaveFileName = S;// запам'ятати ім’я файлу для запису
+            this.SaveFileName = S;// запам'ятати ім’я ф айлу для запису
         }
         public void WriteOpenFileName(string S)
         {
@@ -50,6 +55,33 @@ namespace Surname_Group_Course_project
             else
             {
                 this.Result = Convert.ToString(false);
+            }
+            this.Modify = true; // Дозвіл запису
+        }
+        public void SaveToFile() // Запис даних до файлу
+        {
+            if (!this.Modify)
+                return;
+            try
+            {
+                Stream S; // створення потоку
+                if (File.Exists(this.SaveFileName))// існує файл?
+                    S = File.Open(this.SaveFileName, FileMode.Append);// Відкриття файлу для збереження
+                else
+                    S = File.Open(this.SaveFileName, FileMode.Create);// створити файл
+                Buffer D = new Buffer(); // створення буферної змінної
+                D.Data = this.Data;
+                D.Result = Convert.ToString(this.Result);
+                D.Key = Key;
+                BinaryFormatter BF = new BinaryFormatter(); // створення об'єкта для форматування BF.Serialize(S, D);
+                S.Flush(); // очищення буфера потоку
+                S.Close(); // закриття потоку
+                this.Modify = false; // Заборона повторного запису
+            }
+            catch
+            {
+
+                MessageBox.Show("Помилка роботи з файлом"); // Виведення на екран повідомлення "Помилка роботи з файлом"
             }
         }
     }

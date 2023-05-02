@@ -1,4 +1,4 @@
-﻿using Surname_Group_Course_project;
+﻿using Bielov_IKM_721_project;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +36,7 @@ namespace Bielov_IKM_721_project
             A.ShowDialog(); // відображення діалогового вікна About
             MajorObject = new MajorWork();
             MajorObject.SetTime();
+            MajorObject.Modify = false;// заборона запису
             this.Mode = true;
         }
 
@@ -103,14 +104,14 @@ namespace Bielov_IKM_721_project
             A.ShowDialog();
         }
 
-        private void зберегтиЯкToolStripMenuItem_Click(object sender, EventArgs e)
+        private void зберегтіЯкToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (sfdSave.ShowDialog() == DialogResult.OK)// Виклик діалогового вікна збереження файлу
+            if (sfdSave.ShowDialog() == DialogResult.OK) // Виклик діалогового вікна збереження файлу
             {
-                MessageBox.Show(sfdSave.FileName);
+                MajorObject.WriteSaveFileName(sfdSave.FileName); // написання імені файлу
+                MajorObject.SaveToFile(); // метод збереження в файл }
             }
         }
-
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ofdOpen.ShowDialog() == DialogResult.OK) // Виклик діалогового вікна відкриття файлу
