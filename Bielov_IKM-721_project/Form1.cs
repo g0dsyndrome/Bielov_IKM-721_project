@@ -31,10 +31,10 @@ namespace Bielov_IKM_721_project
         private void Form1_Load(object sender, EventArgs e)
         {
             About A = new About(); // створення форми About
-
             A.tAbout.Start();
             A.ShowDialog(); // відображення діалогового вікна About
             MajorObject = new MajorWork();
+            MajorObject.SetTime();
             this.Mode = true;
         }
 
@@ -80,6 +80,13 @@ namespace Bielov_IKM_721_project
                 tClock.Start();
                 e.KeyChar = (char)0;
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string s;
+            s = (System.DateTime.Now - MajorObject.GetTime()).ToString();
+            MessageBox.Show(s, "Час роботи програми");// Виведення часу роботи програми і повідомлення "Час роботи програми" на екран
         }
     }
 }
