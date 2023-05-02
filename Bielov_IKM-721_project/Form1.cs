@@ -68,7 +68,7 @@ namespace Bielov_IKM_721_project
         {
 
         }
-        
+
         private void tbInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             tClock.Stop();
@@ -109,6 +109,7 @@ namespace Bielov_IKM_721_project
             if (sfdSave.ShowDialog() == DialogResult.OK) // Виклик діалогового вікна збереження файлу
             {
                 MajorObject.WriteSaveFileName(sfdSave.FileName); // написання імені файлу
+                MajorObject.Generator();
                 MajorObject.SaveToFile(); // метод збереження в файл }
             }
         }
@@ -135,10 +136,37 @@ namespace Bielov_IKM_721_project
                 catch
                 {
                     disk += disks[i] + "- не готовий" + (char)13; // якщо пристрій не готовий, то виведення на екран ім’я пристрою і повідомлення «не готовий»
-}
+                }
             }
 
             MessageBox.Show(disk, "Накопичувачі");
+        }
+
+        private void зберегтиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MajorObject.SaveFileNameExists()) // задане ім’я файлу існує?
+                MajorObject.SaveToFile(); // зберегти дані в файл
+            else
+                зберегтіЯкToolStripMenuItem_Click(sender, e); //
+        }
+
+        private void новийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MajorObject.NewRec();
+            tbInput.Clear();// очистити вміст тексту
+            label1.Text = "";
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MajorObject.Modify)
+            {
+                if (MessageBox.Show("Дані не були збережені. Продовжити вихід?", "УВАГА", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true; // припинити закриття
+                }
+            }
         }
     }
 }
